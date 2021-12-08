@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>PÁGINA HOME</h1>
+
+        <input id="email" type="text" placeholder="email"/><br>
+        <input id="password" type="password" placeholder="password"/><br>
+        <br>
+        <button onclick="fazerLogin()">FAZER LOGIN</button><br>
+        <br>
+        <a href="cadastro">IR PARA CADASTRO</a>
+    </body>    
+
+    <script>
+        function fazerLogin() {
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
+
+            alert("FAZENDO O LOGIN.. " + email + " " + password)
+            
+            axios.post('/login', {
+                email: email,
+                password: password
+            }).then(x => {
+                alert(x.data.msg)
+                localStorage.setItem('userId_projectCv', x.data.userId);
+                window.location.href = "menu"
+            })
+            .catch(e => window.location.href = "cadastro");
+        }
+    </script>
+
+</html>

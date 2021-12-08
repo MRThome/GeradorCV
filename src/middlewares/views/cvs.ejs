@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <h1>Meus CVs</h1>
+    <ol>
+	<% for (let cv of cvs) { %>
+		<li><a target='a_blank' rel='noreferrer noopener' href='http://localhost:3000/pdfs/<%= cv.fileName %>.pdf'>Clique para baixar  <%= cv.name %> - <%= cv.nacionalidade %></a>
+            <a onclick="mostrarPDFonObj('<%= cv.fileName %>')"
+            type="button" style="margin-left:20x;cursor:pointer;background-color:black; color:white;width:50px;height:50px;border-radius:5px">Visualizar PDF</a>
+        </li>
+	<% } %>
+	</ol>
+    <object id='obj' style="display:none" data="" type="application/pdf" width="100%"
+        height="450px">
+        <p>Seu navegador não suporta o elemento <code>object</code> para exibir o PDF.</p>
+     </object>
+     <script>
+      const obj = document.getElementById('obj');
+      let mostrarPDFonObj = (pdf) => {
+         obj.data = 'http://localhost:3000/pdfs/' + pdf + '.pdf';
+         obj.style.display = 'block';
+      }
+         </script>
+</body>
+</html>

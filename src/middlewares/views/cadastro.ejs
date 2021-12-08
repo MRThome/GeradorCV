@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <h1>Cadastro</h1>
+            <div class="input"><input id="name" type="text" placeholder="Nome Completo"/></div>
+            <div class="input"><input id="email" type="text" placeholder="Email"/></div>
+            <div class="input"><input id="password" type="password" placeholder="Password"/></div>
+            <select name="role" id="role">
+                <option value="-1" selected disabled>Selecione tipo de conta</option>
+                <option value="empresa">Empresa</option>
+                <option value="user">Usuário</option>
+            </select>
+            <button type="button" onclick="createUser()">Criar Conta!</button>
+            
+    </body>
+    <script>
+        function createUser() {
+            const name = document.getElementById("name").value
+            const email= document.getElementById("email").value
+            const password = document.getElementById("password").value
+            const role = document.getElementById("role").value
+
+            axios.post('/cadastro', {
+                name, email, password, role
+            }).then(x => {
+                console.log(x)
+                alert(x.data)
+                window.location.href = "menu"
+        })
+                .catch(e => alert("Erro"));
+        }
+    </script>
+</html>
