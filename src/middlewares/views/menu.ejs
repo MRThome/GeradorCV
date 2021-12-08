@@ -92,7 +92,7 @@
                 alert(x.data)
                 window.location.href = "menu"
         })
-                .catch(e => window.location.href = "cadastro");
+                .catch(e => alert("Não foi possível gerar o currículo"));
         }
         function verCVS() {
             const userId = localStorage.getItem('userId_projectCv')
