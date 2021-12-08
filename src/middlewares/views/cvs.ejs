@@ -12,7 +12,7 @@
     <h1>Meus CVs</h1>
     <ol>
 	<% for (let cv of cvs) { %>
-		<li><a target='a_blank' rel='noreferrer noopener' href='http://localhost:3000/pdfs/<%= cv.fileName %>.pdf'>Clique para baixar  <%= cv.name %> - <%= cv.nacionalidade %></a>
+		<li><a target='a_blank' rel='noreferrer noopener' href='/pdfs/<%= cv.fileName %>.pdf'>Clique para baixar  <%= cv.name %> - <%= cv.nacionalidade %></a>
             <a onclick="mostrarPDFonObj('<%= cv.fileName %>')"
             type="button" style="margin-left:20x;cursor:pointer;background-color:black; color:white;width:50px;height:50px;border-radius:5px">Visualizar PDF</a>
         </li>
@@ -25,7 +25,7 @@
      <script>
       const obj = document.getElementById('obj');
       let mostrarPDFonObj = (pdf) => {
-         obj.data = 'http://localhost:3000/pdfs/' + pdf + '.pdf';
+         obj.data = '/pdfs/' + pdf + '.pdf';
          obj.style.display = 'block';
       }
          </script>
